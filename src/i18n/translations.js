@@ -82,6 +82,12 @@ export const TRANSLATIONS = {
       cancel: 'Not now',
       confirm: 'Redeem now',
     },
+    manual: {
+      entryTitle: 'No tag on your cloth?',
+      entryDesc: 'Add it manually with a photo and a few quick details.',
+      homeButton: 'No tag? Add manually',
+      addButton: 'Add cloth without tag',
+    },
     scan: {
       title: 'Scan garment QR',
       subtitle: 'Point your camera at a ThreadTrail care tag, or tap any sample garment below.',
@@ -353,6 +359,12 @@ export const TRANSLATIONS = {
       confirmDesc: '“{offer}” अनलॉक करने के लिए {cost} ग्रीन पॉइंट्स का उपयोग करें। यह प्रोटोटाइप रिडेम्पशन वापस नहीं होगा।',
       cancel: 'अभी नहीं',
       confirm: 'अभी रिडीम करें',
+    },
+    manual: {
+      entryTitle: 'कपड़े पर टैग नहीं है?',
+      entryDesc: 'फोटो और कुछ आसान जानकारी के साथ मैन्युअली जोड़ें।',
+      homeButton: 'टैग नहीं? मैन्युअली जोड़ें',
+      addButton: 'बिना टैग का कपड़ा जोड़ें',
     },
     scan: {
       title: 'कपड़े का QR स्कैन करें',

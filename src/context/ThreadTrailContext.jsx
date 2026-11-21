@@ -123,7 +123,19 @@ export function ThreadTrailProvider({ children }) {
   const removeFromBag = useCallback((garmentId) => {
     setState((prev) => ({
       ...prev,
-      bagItems: prev.bagItems.filter((item) => item.garmentId !== garmentId),
+      bagItems: prev.bagItems.filter(
+        (item) => item.garmentId !== garmentId && item.manualId !== garmentId
+      ),
+    }));
+  }, []);
+
+  const addManualToBag = useCallback((manual) => {
+    setState((prev) => ({
+      ...prev,
+      bagItems: [
+        ...prev.bagItems,
+        { manualId: manual.id, condition: manual.condition, manual },
+      ],
     }));
   }, []);
 
@@ -150,11 +162,12 @@ export function ThreadTrailProvider({ children }) {
       Math.round(
         itemsCopy.reduce((sum, item) => {
           const g = GARMENTS.find((x) => x.id === item.garmentId);
-          return sum + (g ? g.weightKg : 0.25);
+          return sum + (g ? g.weightKg : Number(item.manual?.weightKg) || 0.25);
         }, 0) * 100
       ) / 100;
 
-    const pointsEarned = itemsCopy.length * 10;
+    const itemCount = itemsCopy.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0);
+    const pointsEarned = itemCount * 10;
     const randomNum = Math.floor(10000 + Math.random() * 89999);
     const trackingId = `TT-${randomNum}`;
     const agent = SIMULATED_AGENTS[Math.floor(Math.random() * SIMULATED_AGENTS.length)];
@@ -217,7 +230,10 @@ export function ThreadTrailProvider({ children }) {
 
   const t = TRANSLATIONS[state.language] || TRANSLATIONS.en;
 
-  const totalItemsDiverted = state.pickups.reduce((sum, p) => sum + (p.items?.length || 0), 0);
+  const totalItemsDiverted = state.pickups.reduce(
+    (sum, p) => sum + (p.items || []).reduce((count, item) => count + (item.manual?.quantity || 1), 0),
+    0
+  );
   const totalKgDiverted =
     Math.round(state.pickups.reduce((sum, p) => sum + (p.totalWeightKg || 0), 0) * 10) / 10;
 
@@ -234,6 +250,7 @@ export function ThreadTrailProvider({ children }) {
         addToBag,
         updateBagItemCondition,
         removeFromBag,
+        addManualToBag,
         selectPartner,
         setUserLocation,
         confirmPickup,

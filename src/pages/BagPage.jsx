@@ -9,8 +9,10 @@ import {
   Calendar,
   Clock,
   Sparkles,
+  Shirt,
 } from 'lucide-react';
 import { getGarmentById } from '../data/garments';
+import { manualToGarment } from '../data/manualClothes';
 import { PARTNERS } from '../data/partners';
 import { useThreadTrail } from '../hooks/useThreadTrail';
 import { GarmentIllustration } from '../components/GarmentIllustration';
@@ -34,6 +36,7 @@ export function BagPage() {
 
   const bagDetailed = state.bagItems
     .map((item) => {
+      if (item.manual) return { ...item, garment: manualToGarment(item.manual), isManual: true };
       const garment = getGarmentById(item.garmentId);
       return garment ? { ...item, garment } : null;
     })
@@ -43,6 +46,10 @@ export function BagPage() {
     Math.round(
       bagDetailed.reduce((sum, item) => sum + item.garment.weightKg, 0) * 100
     ) / 100;
+  const totalItemCount = bagDetailed.reduce(
+    (sum, item) => sum + (item.manual?.quantity || 1),
+    0
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -123,13 +130,20 @@ export function BagPage() {
             <QrCode className="w-4 h-4 text-[#E9A820]" />
             <span>{t.bag.scanFirst}</span>
           </Link>
+          <Link
+            to="/manual-add"
+            className="inline-flex items-center justify-center gap-2 min-h-[46px] px-5 py-2.5 rounded-xl border border-[#E9A820]/55 bg-[#E9A820]/10 text-[#2B3A67] text-sm font-bold"
+          >
+            <Shirt className="w-4 h-4 text-[#1F8A87]" />
+            <span>{t.manual.addButton}</span>
+          </Link>
         </div>
       </div>
     );
   }
 
   const remainingForFree = selectedPartner
-    ? Math.max(0, selectedPartner.minQty - bagDetailed.length)
+    ? Math.max(0, selectedPartner.minQty - totalItemCount)
     : 0;
 
   return (
@@ -140,7 +154,7 @@ export function BagPage() {
           <p className="text-xs text-[#2A2A2A]/75 mt-1">{t.bag.subtitle}</p>
         </div>
         <span className="text-xs font-semibold text-[#1F8A87] tabular-nums whitespace-nowrap pt-1">
-          {bagDetailed.length} {bagDetailed.length === 1 ? t.common.item : t.common.items} ·{' '}
+          {totalItemCount} {totalItemCount === 1 ? t.common.item : t.common.items} ·{' '}
           {totalWeightKg} {t.common.kg}
         </span>
       </div>
@@ -180,7 +194,7 @@ export function BagPage() {
               {!selectedPartner.pickupAvailable
                 ? t.bag.dropOffNote
                 : remainingForFree === 0
-                ? `${bagDetailed.length} ${t.common.items}. ${t.bag.hintEnough}`
+                ? `${totalItemCount} ${t.common.items}. ${t.bag.hintEnough}`
                 : t.bag.hintNeedMore
                     .replace('{count}', String(remainingForFree))
                     .replace('{partner}', selectedPartner.name)}
@@ -201,7 +215,7 @@ export function BagPage() {
 
       {/* Scanned Garments List */}
       <section className="space-y-2.5">
-        {bagDetailed.map(({ garment, condition }) => {
+        {bagDetailed.map(({ garment, condition, manual, manualId }) => {
           const condInfo = t.passport.conditions[condition] || t.passport.conditions.good;
           return (
             <div
@@ -212,7 +226,7 @@ export function BagPage() {
                 <GarmentIllustration garment={garment} size="sm" />
                 <div className="min-w-0">
                   <div className="font-semibold text-sm text-[#2B3A67] truncate">
-                    {garment.name[lang]}
+                    {garment.name[lang]}{manual?.quantity > 1 ? ` × ${manual.quantity}` : ''}
                   </div>
                   <div className="text-[11px] text-[#2A2A2A]/70 tabular-nums">
                     {garment.weightKg} {t.common.kg} ·{' '}
@@ -223,7 +237,7 @@ export function BagPage() {
 
               <button
                 type="button"
-                onClick={() => removeFromBag(garment.id)}
+                onClick={() => removeFromBag(manualId || garment.id)}
                 aria-label={`${t.common.remove} ${garment.name[lang]}`}
                 className="min-w-[40px] min-h-[40px] rounded-xl text-[#C65D3B] hover:bg-[#C65D3B]/10 flex items-center justify-center shrink-0"
               >
@@ -240,6 +254,13 @@ export function BagPage() {
         >
           <QrCode className="w-4 h-4 text-[#E9A820]" />
           <span>{t.bag.scanAnother}</span>
+        </Link>
+        <Link
+          to="/manual-add"
+          className="w-full min-h-[44px] px-4 py-2 rounded-xl border border-[#E9A820]/45 bg-[#E9A820]/10 text-[#2B3A67] text-xs font-bold flex items-center justify-center gap-2"
+        >
+          <Shirt className="w-4 h-4 text-[#1F8A87]" />
+          <span>{t.manual.addButton}</span>
         </Link>
       </section>
 
@@ -386,8 +407,8 @@ export function BagPage() {
             <span>{t.bag.summaryTitle}</span>
           </div>
           <div className="text-[#2A2A2A]/85 tabular-nums">
-            {bagDetailed.length} {bagDetailed.length === 1 ? t.common.item : t.common.items} ·{' '}
-            {totalWeightKg} {t.common.kg} · +{bagDetailed.length * 10} {t.common.pts}
+            {totalItemCount} {totalItemCount === 1 ? t.common.item : t.common.items} ·{' '}
+            {totalWeightKg} {t.common.kg} · +{totalItemCount * 10} {t.common.pts}
           </div>
           <div className="text-[#2A2A2A]/75">
             {t.bag.dates[dateKey]} · {t.bag.slots[slotKey]}

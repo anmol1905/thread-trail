@@ -1,3 +1,5 @@
+import { Shirt } from 'lucide-react';
+
 // Local garment photography; source and license details live in /image-credits.html.
 export function GarmentIllustration({ garment, size = 'md' }) {
   const dims =
@@ -12,17 +14,23 @@ export function GarmentIllustration({ garment, size = 'md' }) {
       className={`garment-swatch ${dims} shrink-0 flex items-center justify-center relative overflow-hidden border border-[#2B3A67]/15`}
       aria-hidden="true"
     >
-      <img
-        src={garment.image}
-        alt=""
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {garment.image ? (
+        <img
+          src={garment.image}
+          alt=""
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <span className="absolute inset-0 bg-[#2B3A67]/8 text-[#2B3A67]/45 flex items-center justify-center">
+          <Shirt className="w-1/2 h-1/2" />
+        </span>
+      )}
       <span className="absolute inset-0 bg-gradient-to-t from-[#2B3A67]/28 via-transparent to-transparent" />
       <span
         className="absolute z-10 bottom-1 right-1.5 text-[8px] font-bold tracking-wider text-[#FFFDF8] drop-shadow-sm"
       >
-        {garment.id}
+        {garment.isManual ? 'MANUAL' : garment.id}
       </span>
     </div>
   );

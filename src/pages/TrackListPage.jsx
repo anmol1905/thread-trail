@@ -60,8 +60,8 @@ export function TrackListPage() {
                       {pickup.partnerName}
                     </div>
                     <div className="text-xs text-[#2A2A2A]/70 tabular-nums">
-                      {pickup.items.length}{' '}
-                      {pickup.items.length === 1 ? t.common.item : t.common.items} ·{' '}
+                      {pickup.items.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0)}{' '}
+                      {pickup.items.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0) === 1 ? t.common.item : t.common.items} ·{' '}
                       {pickup.totalWeightKg} {t.common.kg} ·{' '}
                       {t.bag.dates[pickup.dateKey]}
                     </div>

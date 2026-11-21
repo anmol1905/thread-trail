@@ -7,7 +7,10 @@ import { useThreadTrail } from '../hooks/useThreadTrail';
 export function AppShell({ children }) {
   const { pathname } = useLocation();
   const { state, t, lang, toggleLanguage } = useThreadTrail();
-  const bagCount = state.bagItems.length;
+  const bagCount = state.bagItems.reduce(
+    (sum, item) => sum + (item.manual?.quantity || 1),
+    0
+  );
 
   const tabs = [
     { to: '/', label: t.nav.home, icon: Home, match: (p) => p === '/' },
@@ -15,7 +18,7 @@ export function AppShell({ children }) {
       to: '/scan',
       label: t.nav.scan,
       icon: QrCode,
-      match: (p) => p.startsWith('/scan') || p.startsWith('/demo-tags') || p.startsWith('/garment'),
+      match: (p) => p.startsWith('/scan') || p.startsWith('/demo-tags') || p.startsWith('/garment') || p.startsWith('/manual-add'),
     },
     { to: '/partners', label: t.nav.partners, icon: MapPin, match: (p) => p.startsWith('/partners') },
     { to: '/bag', label: t.nav.bag, icon: ShoppingBag, badge: bagCount, match: (p) => p.startsWith('/bag') },

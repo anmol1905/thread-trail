@@ -10,6 +10,7 @@ import {
   User,
 } from 'lucide-react';
 import { getGarmentById } from '../data/garments';
+import { manualToGarment } from '../data/manualClothes';
 import { useThreadTrail } from '../hooks/useThreadTrail';
 import { GarmentIllustration } from '../components/GarmentIllustration';
 import { StitchDivider } from '../components/StitchDivider';
@@ -61,7 +62,7 @@ export function TrackerPage() {
 
   const whatsappText = t.track.whatsappUpdates[currentStep]
     .replace('{id}', pickup.id)
-    .replace('{count}', String(pickup.items.length))
+    .replace('{count}', String(pickup.items.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0)))
     .replace('{partner}', pickup.partnerName)
     .replace('{slot}', slotSummary)
     .replace('{agent}', pickup.agent?.name || 'Ramesh Kumar')
@@ -70,6 +71,7 @@ export function TrackerPage() {
 
   const garmentsDetailed = pickup.items
     .map((item) => {
+      if (item.manual) return { ...item, garment: manualToGarment(item.manual) };
       const g = getGarmentById(item.garmentId);
       return g ? { ...item, garment: g } : null;
     })
@@ -269,7 +271,7 @@ export function TrackerPage() {
           {t.track.garmentsInPickup}
         </h2>
         <div className="space-y-2">
-          {garmentsDetailed.map(({ garment, condition }) => (
+          {garmentsDetailed.map(({ garment, condition, manual }) => (
             <div
               key={garment.id}
               className="rounded-xl bg-[#FFFDF8] border border-[#2B3A67]/12 p-3 flex items-center gap-3"
@@ -277,7 +279,7 @@ export function TrackerPage() {
               <GarmentIllustration garment={garment} size="sm" />
               <div className="min-w-0">
                 <div className="text-sm font-semibold text-[#2B3A67] truncate">
-                  {garment.name[lang]}
+                  {garment.name[lang]}{manual?.quantity > 1 ? ` × ${manual.quantity}` : ''}
                 </div>
                 <div className="text-xs text-[#2A2A2A]/70">
                   {garment.brand} · {t.passport.conditions[condition]?.label}

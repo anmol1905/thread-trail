@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Camera, CameraOff, Search, Printer, ArrowRight, QrCode } from 'lucide-react';
+import { Camera, CameraOff, Search, Printer, ArrowRight, QrCode, Shirt } from 'lucide-react';
 import { Html5Qrcode } from 'html5-qrcode';
 import { GARMENTS, getGarmentById } from '../data/garments';
 import { useThreadTrail } from '../hooks/useThreadTrail';
@@ -76,6 +76,9 @@ export function ScanPage() {
             if (foundId && getGarmentById(foundId)) {
               stopCamera();
               navigate(`/garment/${foundId}`);
+            } else {
+              stopCamera();
+              setManualError(t.scan.invalidCode);
             }
           },
           () => {
@@ -107,6 +110,17 @@ export function ScanPage() {
         <p className="text-sm text-[#2A2A2A]/75 mt-1">{t.scan.subtitle}</p>
       </div>
 
+      <Link
+        to="/manual-add"
+        className="indigo-textile-panel rounded-2xl p-4 text-[#FBF6EA] flex items-center justify-between gap-4 shadow-sm"
+      >
+        <div className="flex items-center gap-3">
+          <span className="w-12 h-12 rounded-2xl bg-[#E9A820] text-[#2B3A67] flex items-center justify-center shrink-0"><Shirt className="w-6 h-6" /></span>
+          <div><div className="font-display text-lg font-bold">{t.manual.entryTitle}</div><div className="text-xs text-[#FBF6EA]/78 mt-0.5">{t.manual.entryDesc}</div></div>
+        </div>
+        <ArrowRight className="w-5 h-5 text-[#E9A820] shrink-0" />
+      </Link>
+
       {/* Real Camera QR Scanner Card with Graceful Fallback */}
       <section className="garment-tag-card p-4 space-y-3">
         <div className="flex items-center justify-between pr-5">
@@ -127,9 +141,9 @@ export function ScanPage() {
         )}
 
         {cameraError && (
-          <div className="rounded-xl bg-[#C65D3B]/10 border border-[#C65D3B]/30 p-3 flex items-start gap-2.5 text-xs text-[#8C3418]">
-            <CameraOff className="w-4 h-4 shrink-0 mt-0.5" />
-            <span>{t.scan.cameraUnavailable}</span>
+          <div className="rounded-xl bg-[#C65D3B]/10 border border-[#C65D3B]/30 p-3 text-xs text-[#8C3418] space-y-2">
+            <div className="flex items-start gap-2.5"><CameraOff className="w-4 h-4 shrink-0 mt-0.5" /><span>{t.scan.cameraUnavailable}</span></div>
+            <Link to="/manual-add" className="inline-flex min-h-[36px] items-center font-bold text-[#2B3A67]">{t.manual.addButton} →</Link>
           </div>
         )}
 
@@ -174,9 +188,7 @@ export function ScanPage() {
             </button>
           </div>
           {manualError && (
-            <p className="text-xs font-medium text-[#C65D3B]" role="alert">
-              {manualError}
-            </p>
+            <div role="alert" className="flex flex-wrap items-center justify-between gap-2"><p className="text-xs font-medium text-[#C65D3B]">{manualError}</p><Link to="/manual-add" className="min-h-[36px] inline-flex items-center text-xs font-bold text-[#2B3A67]">{t.manual.addButton} →</Link></div>
           )}
         </form>
       </section>

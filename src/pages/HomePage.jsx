@@ -10,6 +10,7 @@ import {
   RotateCcw,
   ChevronRight,
   PackageCheck,
+  Shirt,
 } from 'lucide-react';
 import { useThreadTrail } from '../hooks/useThreadTrail';
 import { StitchDivider } from '../components/StitchDivider';
@@ -58,6 +59,13 @@ export function HomePage() {
             >
               <QrCode className="w-5 h-5 text-[#E9A820]" />
               <span>{t.home.scanCta}</span>
+            </Link>
+            <Link
+              to="/manual-add"
+              className="w-full min-h-[44px] px-4 py-2 rounded-xl border border-[#E9A820]/55 bg-[#E9A820]/10 text-[#2B3A67] text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+            >
+              <Shirt className="w-4 h-4 text-[#1F8A87]" />
+              <span>{t.manual.homeButton}</span>
             </Link>
             <Link
               to="/demo-tags"
@@ -220,8 +228,8 @@ export function HomePage() {
                           {pickup.id} · {pickup.partnerName}
                         </div>
                         <div className="text-xs text-[#2A2A2A]/70 mt-0.5 tabular-nums">
-                          {pickup.items.length}{' '}
-                          {pickup.items.length === 1 ? t.common.item : t.common.items} ·{' '}
+                          {pickup.items.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0)}{' '}
+                          {pickup.items.reduce((sum, item) => sum + (item.manual?.quantity || 1), 0) === 1 ? t.common.item : t.common.items} ·{' '}
                           {pickup.totalWeightKg} {t.common.kg} · {stepLabel}
                         </div>
                       </div>
