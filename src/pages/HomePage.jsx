@@ -67,13 +67,6 @@ export function HomePage() {
               <Shirt className="w-4 h-4 text-[#1F8A87]" />
               <span>{t.manual.homeButton}</span>
             </Link>
-            <Link
-              to="/demo-tags"
-              className="w-full min-h-[44px] px-4 py-2 rounded-xl border border-[#2B3A67]/20 bg-[#FBF6EA] text-[#2B3A67] text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#2B3A67]/5 transition-colors"
-            >
-              <Printer className="w-4 h-4 text-[#2B3A67]/75" />
-              <span>{t.home.printDemoLink}</span>
-            </Link>
           </div>
         </div>
       </section>
