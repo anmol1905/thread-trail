@@ -40,7 +40,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="space-y-5">
+    <div className="home-page space-y-5">
       {/* Hero Garment Tag Card */}
       <section className="garment-tag-card overflow-hidden">
         <div className="h-2 w-full ajrakh-border" aria-hidden="true" />
@@ -81,7 +81,7 @@ export function HomePage() {
             return (
               <div
                 key={step.title}
-                className="rounded-2xl bg-[#FFFDF8] border border-[#2B3A67]/12 p-3.5 flex flex-col gap-2"
+                className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#2B3A67]/12 p-3.5 flex flex-col gap-2"
               >
                 <div className="flex items-center justify-between">
                   <span className="w-8 h-8 rounded-lg bg-[#2B3A67]/8 text-[#2B3A67] flex items-center justify-center">
@@ -113,7 +113,7 @@ export function HomePage() {
           {t.home.impactTitle}
         </h2>
         <div className="grid grid-cols-3 gap-2.5">
-          <div className="rounded-2xl bg-[#FFFDF8] border border-[#2B3A67]/12 p-3 text-center">
+          <div className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#2B3A67]/12 p-3 text-center">
             <div className="text-2xl font-bold text-[#2B3A67] tabular-nums">
               {totalItemsDiverted}
             </div>
@@ -121,7 +121,7 @@ export function HomePage() {
               {t.home.itemsRecycled}
             </div>
           </div>
-          <div className="rounded-2xl bg-[#FFFDF8] border border-[#1F8A87]/25 p-3 text-center">
+          <div className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#1F8A87]/25 p-3 text-center">
             <div className="text-2xl font-bold text-[#1F8A87] tabular-nums">
               {totalKgDiverted}
             </div>
@@ -129,7 +129,7 @@ export function HomePage() {
               {t.home.kgDiverted}
             </div>
           </div>
-          <div className="rounded-2xl bg-[#FFFDF8] border border-[#E9A820]/40 p-3 text-center">
+          <div className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#E9A820]/40 p-3 text-center">
             <div className="text-2xl font-bold text-[#B3780A] tabular-nums">
               {state.points}
             </div>
@@ -141,7 +141,7 @@ export function HomePage() {
       </section>
 
       {/* Festival Nudge Banner (Indigo & Turmeric — no tricolor) */}
-      <section className="rounded-2xl bg-[#2B3A67] text-[#FBF6EA] p-4 relative overflow-hidden">
+      <section className="indigo-textile-panel rounded-2xl bg-[#2B3A67] text-[#FBF6EA] p-4 relative overflow-hidden">
         <div
           className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-[#E9A820]/18 pointer-events-none"
           aria-hidden="true"
@@ -231,7 +231,18 @@ export function HomePage() {
 
       {/* Quiet Footer with hidden presentation reset */}
       <footer className="pt-4 pb-2 border-t border-[#2B3A67]/10 flex items-center justify-between text-xs text-[#2A2A2A]/55">
-        <span>{t.common.demoBadge}</span>
+        <span className="inline-flex items-center gap-2">
+          <span>{t.common.demoBadge}</span>
+          <span aria-hidden="true">·</span>
+          <a
+            href="/image-credits.html"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-[#2B3A67] hover:underline"
+          >
+            {t.common.imageCredits}
+          </a>
+        </span>
         <button
           type="button"
           onClick={handleReset}

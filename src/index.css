@@ -23,16 +23,95 @@
   }
 }
 
+/* Woven khadi ground: quiet cross-threads, using only the existing palette. */
+.textile-backdrop {
+  background-color: #E7DEC9;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(43, 58, 103, 0.025) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, rgba(198, 93, 59, 0.025) 0 1px, transparent 1px 7px);
+}
+
+.app-canvas {
+  isolation: isolate;
+  max-width: 430px;
+}
+
+.app-canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    repeating-linear-gradient(2deg, transparent 0 7px, rgba(43, 58, 103, 0.018) 7px 8px),
+    repeating-linear-gradient(91deg, transparent 0 11px, rgba(233, 168, 32, 0.022) 11px 12px);
+}
+
+.app-header {
+  background-image:
+    linear-gradient(rgba(251, 246, 234, 0.91), rgba(251, 246, 234, 0.91)),
+    url("data:image/svg+xml,%3Csvg width='48' height='24' viewBox='0 0 48 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 4l4 8-4 8-4-8zm24 0l4 8-4 8-4-8z' fill='none' stroke='%232B3A67' stroke-opacity='.14'/%3E%3Ccircle cx='24' cy='12' r='2' fill='%23E9A820' fill-opacity='.2'/%3E%3C/svg%3E");
+  background-size: auto, 48px 24px;
+}
+
+/* A tiny toran-inspired edge below the header. */
+.craft-ribbon {
+  height: 5px;
+  margin-bottom: -5px;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='5' viewBox='0 0 24 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h24' stroke='%232B3A67' stroke-opacity='.24'/%3E%3Cpath d='M2 0l4 4 4-4m4 0l4 4 4-4' fill='%23E9A820' fill-opacity='.22' stroke='%232B3A67' stroke-opacity='.2' stroke-width='.6'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+.app-content {
+  position: relative;
+}
+
+.app-content::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  right: -26px;
+  width: 74px;
+  height: 104px;
+  pointer-events: none;
+  opacity: 0.045;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg viewBox='0 0 74 104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M38 4C8 21 5 57 29 76c10 8 17 15 11 24 22-9 34-32 27-54C62 29 50 20 38 4Z' fill='none' stroke='%232B3A67' stroke-width='3'/%3E%3Cpath d='M39 22c-15 11-19 29-8 42 6 7 17 8 22 2 7-9 1-24-14-44Z' fill='none' stroke='%23C65D3B' stroke-width='2'/%3E%3Ccircle cx='39' cy='50' r='4' fill='%23E9A820'/%3E%3C/svg%3E");
+}
+
+.app-content > * {
+  position: relative;
+  z-index: 1;
+}
+
+.app-content h2.font-display::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 8px;
+  vertical-align: 1px;
+  border: 1.5px solid rgba(43, 58, 103, 0.48);
+  background-color: rgba(233, 168, 32, 0.22);
+  transform: rotate(45deg);
+}
+
 /* Subtle Ajrakh / block-print geometric motif for card headers and borders */
 .ajrakh-border {
   background-color: #2B3A67;
   background-image: url("data:image/svg+xml,%3Csvg width='32' height='16' viewBox='0 0 32 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8 L8 0 L16 8 L8 16 Z M16 8 L24 0 L32 8 L24 16 Z' fill='none' stroke='%23E9A820' stroke-opacity='0.28' stroke-width='1'/%3E%3Ccircle cx='8' cy='8' r='1.8' fill='%23FBF6EA' fill-opacity='0.35'/%3E%3Ccircle cx='24' cy='8' r='1.8' fill='%23FBF6EA' fill-opacity='0.35'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
+  box-shadow: inset 0 -1px rgba(251, 246, 234, 0.16);
 }
 
 .ajrakh-subtle-bg {
   background-color: #FBF6EA;
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 4 L24 12 L20 20 L16 12 Z M20 20 L24 28 L20 36 L16 28 Z M4 20 L12 16 L20 20 L12 24 Z M20 20 L28 16 L36 20 L28 24 Z' fill='none' stroke='%232B3A67' stroke-opacity='0.045' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23E9A820' fill-opacity='0.12'/%3E%3C/svg%3E");
+  background-image:
+    linear-gradient(rgba(251, 246, 234, 0.955), rgba(251, 246, 234, 0.955)),
+    url('./assets/images/textures/indian-block-print.webp'),
+    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 4 L24 12 L20 20 L16 12 Z M20 20 L24 28 L20 36 L16 28 Z M4 20 L12 16 L20 20 L12 24 Z M20 20 L28 16 L36 20 L28 24 Z' fill='none' stroke='%232B3A67' stroke-opacity='0.045' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23E9A820' fill-opacity='0.12'/%3E%3C/svg%3E");
+  background-size: auto, 560px auto, 40px 40px;
+  background-blend-mode: normal, multiply, normal;
 }
 
 /* Running-stitch dashed divider */
@@ -52,9 +131,240 @@
 .garment-tag-card {
   position: relative;
   background-color: #FFFDF8;
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.94), rgba(255, 253, 248, 0.94)),
+    url('./assets/images/textures/bandhani.webp'),
+    repeating-linear-gradient(0deg, rgba(43, 58, 103, 0.018) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(90deg, rgba(198, 93, 59, 0.014) 0 1px, transparent 1px 8px);
+  background-size: auto, 520px auto, auto, auto;
+  background-blend-mode: normal, luminosity, normal, normal;
   border: 1px solid rgba(43, 58, 103, 0.14);
   border-radius: 18px;
   box-shadow: 0 2px 10px rgba(43, 58, 103, 0.05);
+}
+
+.garment-tag-card::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed rgba(43, 58, 103, 0.1);
+  border-radius: 13px;
+  pointer-events: none;
+}
+
+/* Basket-weave blocks for compact information cards. */
+.woven-card {
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.92), rgba(255, 253, 248, 0.92)),
+    url('./assets/images/textures/ikat.webp'),
+    linear-gradient(45deg, rgba(43, 58, 103, 0.025) 25%, transparent 25%, transparent 75%, rgba(43, 58, 103, 0.025) 75%),
+    linear-gradient(45deg, rgba(233, 168, 32, 0.025) 25%, transparent 25%, transparent 75%, rgba(233, 168, 32, 0.025) 75%);
+  background-position: 0 0, center, 0 0, 4px 4px;
+  background-size: auto, 320px auto, 8px 8px, 8px 8px;
+  background-blend-mode: normal, luminosity, normal, normal;
+  box-shadow: inset 0 0 0 3px rgba(251, 246, 234, 0.72);
+}
+
+.indigo-textile-panel {
+  background-image:
+    linear-gradient(rgba(43, 58, 103, 0.88), rgba(43, 58, 103, 0.88)),
+    url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23FBF6EA' stroke-opacity='.08'%3E%3Cpath d='M28 4l7 10-7 10-7-10zM28 32l7 10-7 10-7-10zM4 28l10-7 10 7-10 7zM32 28l10-7 10 7-10 7z'/%3E%3Ccircle cx='28' cy='28' r='4' stroke='%23E9A820' stroke-opacity='.18'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(#2B3A67, #2B3A67);
+  background-size: auto, 56px 56px, auto;
+  background-blend-mode: normal, normal, normal;
+}
+
+.woven-nav {
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.92), rgba(255, 253, 248, 0.92)),
+    url("data:image/svg+xml,%3Csvg width='32' height='16' viewBox='0 0 32 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8L8 0l8 8-8 8zm16 0 8-8 8 8-8 8z' fill='none' stroke='%232B3A67' stroke-opacity='.2'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23E9A820' fill-opacity='.35'/%3E%3Ccircle cx='24' cy='8' r='1.5' fill='%23E9A820' fill-opacity='.35'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(90deg, rgba(43, 58, 103, 0.12) 0 1px, transparent 1px 5px);
+  background-size: auto, 32px 16px, auto;
+  background-blend-mode: normal, normal, normal;
+  box-shadow: 0 -4px 16px rgba(43, 58, 103, 0.06), inset 0 3px rgba(233, 168, 32, 0.08);
+}
+
+.woven-nav .nav-label {
+  max-width: 72px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.demo-mode-badge {
+  margin-left: auto;
+  min-height: 28px;
+  padding: 3px 10px;
+  border: 1px dashed rgba(43, 58, 103, 0.28);
+  border-radius: 999px;
+  color: rgba(43, 58, 103, 0.72);
+  background: rgba(233, 168, 32, 0.09);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.journey-progress {
+  margin-bottom: 20px;
+  padding: 12px 13px 11px;
+  border: 1px solid rgba(43, 58, 103, 0.14);
+  border-radius: 16px;
+  background-color: #FFFDF8;
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.9), rgba(255, 253, 248, 0.9)),
+    url('./assets/images/textures/bandhani.webp');
+  background-position: center;
+  background-size: auto, 360px auto;
+  background-blend-mode: normal, luminosity;
+  box-shadow: 0 2px 10px rgba(43, 58, 103, 0.04);
+}
+
+.journey-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: rgba(42, 42, 42, 0.62);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.journey-summary strong {
+  color: #2B3A67;
+  font-weight: 700;
+}
+
+.journey-progress ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.journey-progress li {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: rgba(42, 42, 42, 0.46);
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.journey-progress li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 11px;
+  left: calc(50% + 11px);
+  width: calc(100% - 22px);
+  height: 1px;
+  background: rgba(43, 58, 103, 0.18);
+}
+
+.journey-progress li.is-complete:not(:last-child)::after {
+  background: rgba(31, 138, 135, 0.55);
+}
+
+.journey-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 23px;
+  height: 23px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(43, 58, 103, 0.22);
+  border-radius: 999px;
+  background: #FBF6EA;
+  color: rgba(43, 58, 103, 0.55);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.journey-node svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.5;
+}
+
+.journey-progress li.is-complete .journey-node {
+  border-color: #1F8A87;
+  background: #1F8A87;
+  color: #FBF6EA;
+}
+
+.journey-progress li.is-active {
+  color: #2B3A67;
+  font-weight: 800;
+}
+
+.journey-progress li.is-active .journey-node {
+  border-color: #E9A820;
+  background: #E9A820;
+  color: #2B3A67;
+  box-shadow: 0 0 0 4px rgba(233, 168, 32, 0.16);
+}
+
+.continue-pickup-banner {
+  position: sticky;
+  z-index: 20;
+  bottom: 76px;
+}
+
+/* Carry the same textile material language into controls and secondary surfaces. */
+.app-content input,
+.app-content select,
+.app-content textarea,
+.app-content [class~="bg-[#EFE6D2]"] {
+  background-image:
+    linear-gradient(rgba(251, 246, 234, 0.93), rgba(251, 246, 234, 0.93)),
+    url('./assets/images/textures/ikat.webp');
+  background-size: auto, 300px auto;
+  background-blend-mode: normal, luminosity;
+}
+
+.app-content [class~="bg-[#FFFDF8]"][class*="rounded"] {
+  background-image:
+    linear-gradient(rgba(255, 253, 248, 0.94), rgba(255, 253, 248, 0.94)),
+    url('./assets/images/textures/kantha.webp');
+  background-size: auto, 460px auto;
+  background-blend-mode: normal, luminosity;
+}
+
+.app-content :is(a, button)[class~="bg-[#2B3A67]"] {
+  background-color: #2B3A67;
+  background-image:
+    linear-gradient(rgba(43, 58, 103, 0.88), rgba(43, 58, 103, 0.88)),
+    url("data:image/svg+xml,%3Csvg width='32' height='16' viewBox='0 0 32 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8L8 0l8 8-8 8zm16 0 8-8 8 8-8 8z' fill='none' stroke='%23FBF6EA' stroke-opacity='.22'/%3E%3Ccircle cx='8' cy='8' r='1.5' fill='%23E9A820' fill-opacity='.7'/%3E%3Ccircle cx='24' cy='8' r='1.5' fill='%23E9A820' fill-opacity='.7'/%3E%3C/svg%3E");
+  background-size: auto, 32px 16px;
+  background-blend-mode: normal, normal;
+}
+
+.app-content :is(a, button)[class~="bg-[#1F8A87]"] {
+  background-color: #1F8A87;
+  background-image:
+    linear-gradient(rgba(31, 138, 135, 0.88), rgba(31, 138, 135, 0.88)),
+    url('./assets/images/textures/bandhani.webp');
+  background-size: auto, 280px auto;
+  background-blend-mode: normal, luminosity;
+}
+
+.garment-swatch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(43, 58, 103, 0.06) 3px 4px),
+    repeating-linear-gradient(90deg, transparent 0 4px, rgba(251, 246, 234, 0.24) 4px 5px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .garment-tag-card::before {
@@ -72,6 +382,171 @@
   z-index: 2;
 }
 
+/* Tablet and desktop frame: preserve the compact mobile experience below 768px. */
+@media (min-width: 768px) {
+  .app-canvas {
+    max-width: 1180px;
+  }
+
+  .app-header {
+    height: 64px;
+    padding-inline: clamp(24px, 4vw, 48px);
+  }
+
+  .app-header .font-display {
+    font-size: 1.25rem;
+  }
+
+  .craft-ribbon {
+    top: 64px;
+  }
+
+  .woven-nav {
+    position: sticky !important;
+    top: 69px;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    max-width: none;
+    height: 58px;
+    padding-inline: clamp(24px, 8vw, 120px);
+    transform: none;
+    translate: none;
+    border-top: 0;
+    border-bottom: 1px solid rgba(43, 58, 103, 0.15);
+    border-radius: 0 !important;
+    box-shadow: 0 5px 18px rgba(43, 58, 103, 0.055), inset 0 3px rgba(233, 168, 32, 0.08);
+  }
+
+  .woven-nav > a {
+    min-height: 42px;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .woven-nav .nav-active-mark {
+    position: absolute;
+    bottom: 2px;
+  }
+
+  .woven-nav .nav-label {
+    max-width: none;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .app-content {
+    width: 100%;
+    padding: 32px clamp(28px, 5vw, 64px) 48px;
+  }
+
+  .journey-progress {
+    margin-bottom: 26px;
+    padding: 14px 22px 13px;
+  }
+
+  .journey-summary {
+    font-size: 12px;
+  }
+
+  .journey-progress li {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .journey-progress li:not(:last-child)::after {
+    top: 11px;
+    left: calc(50% + 42px);
+    width: calc(100% - 84px);
+  }
+
+  .continue-pickup-banner {
+    bottom: 18px;
+  }
+
+  .app-content > * {
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+  }
+
+  .scan-page,
+  .track-list-page {
+    max-width: 780px;
+  }
+
+  .partners-page,
+  .passport-page,
+  .bag-page,
+  .tracker-page {
+    max-width: 960px;
+  }
+
+  .demo-tags-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .partners-page .leaflet-container {
+    min-height: 340px;
+  }
+
+  .garment-tag-card {
+    box-shadow: 0 4px 18px rgba(43, 58, 103, 0.065);
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-content > * {
+    max-width: 1040px;
+  }
+
+  .home-page {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .home-page > * {
+    margin-top: 0 !important;
+  }
+
+  .home-page > .my-5 {
+    display: none;
+  }
+
+  .home-page > section:nth-of-type(1),
+  .home-page > section:nth-of-type(3) {
+    grid-column: 1 / span 7;
+  }
+
+  .home-page > section:nth-of-type(2),
+  .home-page > section:nth-of-type(4) {
+    grid-column: 8 / -1;
+  }
+
+  .home-page > section:nth-of-type(5) {
+    grid-column: 1 / -1;
+  }
+
+  .home-page > section:nth-of-type(-n + 4) {
+    height: 100%;
+  }
+
+  .demo-tags-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .partners-page .leaflet-container {
+    min-height: 410px;
+  }
+}
+
 /* Print layout for demo QR tags */
 @media print {
   body {
@@ -84,6 +559,16 @@
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 16px !important;
+  }
+  .garment-tag-card::after,
+  .app-content::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-canvas::before {
+    background-attachment: initial;
   }
 }
 

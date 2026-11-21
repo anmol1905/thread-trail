@@ -15,7 +15,7 @@ export default defineConfig(() => {
       {
         name: 'copy-unbundled-src-assets',
         apply: 'build',
-        closeBundle(error?: Error): void {
+        closeBundle(error) {
           if (error) {
             return;
           }

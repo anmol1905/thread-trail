@@ -97,7 +97,7 @@ export function PartnersPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="partners-page space-y-4">
       <div>
         <h1 className="font-display text-2xl font-bold text-[#2B3A67]">{t.partners.title}</h1>
         <p className="text-xs text-[#2A2A2A]/75 mt-1">{t.partners.subtitle}</p>
@@ -254,14 +254,14 @@ export function PartnersPage() {
       {state.selectedPartnerId && state.bagItems.length > 0 && (
         <Link
           to="/bag"
-          className="rounded-xl bg-[#1F8A87] text-[#FBF6EA] px-4 py-3 flex items-center justify-between gap-2 shadow-sm hover:bg-[#197471] transition-colors"
+          className="continue-pickup-banner rounded-xl bg-[#1F8A87] text-[#FBF6EA] px-4 py-3 flex items-center justify-between gap-2 shadow-sm hover:bg-[#197471] transition-colors"
         >
           <span className="text-xs font-semibold">
             {PARTNERS.find((p) => p.id === state.selectedPartnerId)?.name} ·{' '}
             {state.bagItems.length} {t.common.items}
           </span>
           <span className="text-xs font-bold inline-flex items-center gap-1 whitespace-nowrap">
-            <span>{t.passport.goToBag}</span>
+            <span>{t.partners.continueToBag}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </Link>

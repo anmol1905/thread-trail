@@ -13,7 +13,7 @@ export function TrackListPage() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="track-list-page space-y-4">
       <div>
         <h1 className="font-display text-2xl font-bold text-[#2B3A67]">{t.track.listTitle}</h1>
         <p className="text-xs text-[#2A2A2A]/75 mt-1">{t.track.listSubtitle}</p>

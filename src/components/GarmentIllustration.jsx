@@ -1,24 +1,26 @@
-// Local illustrated garment swatch (zero external image requests).
+// Local garment photography; source and license details live in /image-credits.html.
 export function GarmentIllustration({ garment, size = 'md' }) {
   const dims =
     size === 'lg'
-      ? 'w-20 h-20 text-4xl rounded-2xl'
+      ? 'w-20 h-20 rounded-2xl'
       : size === 'sm'
-      ? 'w-11 h-11 text-xl rounded-xl'
-      : 'w-14 h-14 text-2xl rounded-xl';
+      ? 'w-11 h-11 rounded-xl'
+      : 'w-14 h-14 rounded-xl';
 
   return (
     <div
-      className={`${dims} shrink-0 flex items-center justify-center relative overflow-hidden border border-[#2B3A67]/15`}
-      style={{
-        background: `linear-gradient(135deg, ${garment.colorHex}18 0%, ${garment.accentHex}24 100%)`,
-      }}
+      className={`garment-swatch ${dims} shrink-0 flex items-center justify-center relative overflow-hidden border border-[#2B3A67]/15`}
       aria-hidden="true"
     >
-      <span className="relative z-10 select-none leading-none">{garment.emoji}</span>
+      <img
+        src={garment.image}
+        alt=""
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <span className="absolute inset-0 bg-gradient-to-t from-[#2B3A67]/28 via-transparent to-transparent" />
       <span
-        className="absolute bottom-1 right-1.5 text-[9px] font-bold tracking-wider opacity-60"
-        style={{ color: garment.colorHex }}
+        className="absolute z-10 bottom-1 right-1.5 text-[8px] font-bold tracking-wider text-[#FFFDF8] drop-shadow-sm"
       >
         {garment.id}
       </span>

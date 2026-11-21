@@ -133,10 +133,13 @@ export function BagPage() {
     : 0;
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center justify-between gap-2">
-        <h1 className="font-display text-2xl font-bold text-[#2B3A67]">{t.bag.title}</h1>
-        <span className="text-xs font-semibold text-[#1F8A87] tabular-nums">
+    <div className="bag-page space-y-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h1 className="font-display text-2xl font-bold text-[#2B3A67]">{t.bag.title}</h1>
+          <p className="text-xs text-[#2A2A2A]/75 mt-1">{t.bag.subtitle}</p>
+        </div>
+        <span className="text-xs font-semibold text-[#1F8A87] tabular-nums whitespace-nowrap pt-1">
           {bagDetailed.length} {bagDetailed.length === 1 ? t.common.item : t.common.items} ·{' '}
           {totalWeightKg} {t.common.kg}
         </span>

@@ -6,9 +6,9 @@ export const TRANSLATIONS = {
     nav: {
       home: 'Home',
       scan: 'Scan',
-      partners: 'Partners',
-      bag: 'Bag',
-      track: 'Track',
+      partners: 'Pickup partners',
+      bag: 'Pickup bag',
+      track: 'My pickups',
     },
     common: {
       back: 'Back',
@@ -27,6 +27,11 @@ export const TRANSLATIONS = {
       resetDemo: 'Reset demo data',
       resetConfirm: 'Tap again to reset',
       resetDone: 'Demo data reset',
+      demoMode: 'Demo mode',
+      journeyTitle: 'Pickup journey',
+      currentStep: 'Step {current} of {total}',
+      journeySteps: ['Scan', 'Review', 'Partner', 'Pickup', 'Track'],
+      imageCredits: 'Image credits',
     },
     home: {
       heroHeadline: 'Every cloth has a story. And a next life.',
@@ -123,8 +128,8 @@ export const TRANSLATIONS = {
       goToBag: 'Go to bag',
     },
     partners: {
-      title: 'Nearby textile partners',
-      subtitle: 'Fictional NCR hubs filtered by garment condition and distance.',
+      title: 'Choose a pickup partner',
+      subtitle: 'Select a nearby organisation that accepts your garment condition. You can filter by service and distance.',
       pincodePlaceholder: 'Search pincode or city (e.g. 201309, Dadri)',
       useLocation: 'Use my location',
       locating: 'Locating...',
@@ -143,6 +148,7 @@ export const TRANSLATIONS = {
       minQty: 'Min.',
       selectBtn: 'Select for pickup',
       selectedBtn: 'Selected',
+      continueToBag: 'Continue to pickup bag',
       noPartners: 'No partners match these filters.',
       types: {
         All: 'All',
@@ -156,6 +162,7 @@ export const TRANSLATIONS = {
     },
     bag: {
       title: 'Your pickup bag',
+      subtitle: 'Review your garments, choose a partner, then add your pickup details.',
       emptyTitle: 'Your pickup bag is empty',
       emptyDesc: 'Scan a garment care tag and mark its condition under "Next Life" to bundle it into one pickup.',
       scanFirst: 'Scan a garment',
@@ -246,9 +253,9 @@ export const TRANSLATIONS = {
     nav: {
       home: 'होम',
       scan: 'स्कैन',
-      partners: 'साझेदार',
-      bag: 'बैग',
-      track: 'ट्रैक',
+      partners: 'पिकअप साझेदार',
+      bag: 'पिकअप बैग',
+      track: 'मेरे पिकअप',
     },
     common: {
       back: 'वापस',
@@ -267,6 +274,11 @@ export const TRANSLATIONS = {
       resetDemo: 'डेमो डेटा रीसेट करें',
       resetConfirm: 'रीसेट करने के लिए दोबारा टैप करें',
       resetDone: 'डेमो डेटा रीसेट हो गया',
+      demoMode: 'डेमो मोड',
+      journeyTitle: 'पिकअप प्रक्रिया',
+      currentStep: 'चरण {current} / {total}',
+      journeySteps: ['स्कैन', 'जाँच', 'साझेदार', 'पिकअप', 'ट्रैक'],
+      imageCredits: 'चित्र स्रोत',
     },
     home: {
       heroHeadline: 'हर कपड़े की एक कहानी है। और एक अगला जीवन भी।',
@@ -363,8 +375,8 @@ export const TRANSLATIONS = {
       goToBag: 'बैग पर जाएं',
     },
     partners: {
-      title: 'नजदीकी टेक्सटाइल साझेदार',
-      subtitle: 'कपड़े की स्थिति और दूरी के अनुसार दिल्ली-एनसीआर के काल्पनिक केंद्र।',
+      title: 'पिकअप साझेदार चुनें',
+      subtitle: 'ऐसा नजदीकी केंद्र चुनें जो आपके कपड़े की स्थिति स्वीकार करता हो। सेवा और दूरी के अनुसार फ़िल्टर करें।',
       pincodePlaceholder: 'पिनकोड या शहर खोजें (जैसे 201309, दादरी)',
       useLocation: 'मेरी लोकेशन उपयोग करें',
       locating: 'खोजा जा रहा है...',
@@ -383,6 +395,7 @@ export const TRANSLATIONS = {
       minQty: 'न्यूनतम',
       selectBtn: 'पिकअप के लिए चुनें',
       selectedBtn: 'चयनित',
+      continueToBag: 'पिकअप बैग पर जाएं',
       noPartners: 'इन फ़िल्टर से कोई साझेदार नहीं मिला।',
       types: {
         All: 'सभी',
@@ -396,6 +409,7 @@ export const TRANSLATIONS = {
     },
     bag: {
       title: 'आपका पिकअप बैग',
+      subtitle: 'कपड़ों की जाँच करें, साझेदार चुनें और फिर पिकअप विवरण भरें।',
       emptyTitle: 'आपका पिकअप बैग खाली है',
       emptyDesc: 'किसी कपड़े का QR स्कैन करें और "अगला जीवन" में उसकी स्थिति चुनकर बैग में जोड़ें।',
       scanFirst: 'कपड़ा स्कैन करें',

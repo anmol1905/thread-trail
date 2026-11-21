@@ -1,6 +1,13 @@
 // Dummy garment passport data for ThreadTrail prototype (G001 - G006).
 // All garment records are static dummy data; user scan & pickup actions persist in localStorage.
 
+import cottonTeeImage from '../assets/images/garments/cotton-tee.webp';
+import denimJacketImage from '../assets/images/garments/denim-jacket.webp';
+import sportsTeeImage from '../assets/images/garments/sports-tee.webp';
+import woolPulloverImage from '../assets/images/garments/wool-pullover.webp';
+import khadiKurtaImage from '../assets/images/garments/khadi-kurta.webp';
+import silkSareeImage from '../assets/images/garments/silk-saree.webp';
+
 export const GARMENTS = [
   {
     id: 'G001',
@@ -10,7 +17,7 @@ export const GARMENTS = [
     },
     brand: 'Kapas Looms',
     category: { en: 'T-Shirt', hi: 'टी-शर्ट' },
-    emoji: '👕',
+    image: cottonTeeImage,
     colorHex: '#2B3A67',
     accentHex: '#E9A820',
     size: 'M (Chest 38")',
@@ -57,7 +64,7 @@ export const GARMENTS = [
     },
     brand: 'Neel & Co.',
     category: { en: 'Jacket', hi: 'जैकेट' },
-    emoji: '🧥',
+    image: denimJacketImage,
     colorHex: '#233056',
     accentHex: '#1F8A87',
     size: 'L (Chest 42")',
@@ -104,7 +111,7 @@ export const GARMENTS = [
     },
     brand: 'Gati Active',
     category: { en: 'Activewear', hi: 'स्पोर्ट्सवियर' },
-    emoji: '🏃',
+    image: sportsTeeImage,
     colorHex: '#1F8A87',
     accentHex: '#E9A820',
     size: 'M (Regular Fit)',
@@ -151,7 +158,7 @@ export const GARMENTS = [
     },
     brand: 'Pahadi Knit',
     category: { en: 'Sweater', hi: 'स्वेटर' },
-    emoji: '🧶',
+    image: woolPulloverImage,
     colorHex: '#C65D3B',
     accentHex: '#E9A820',
     size: 'L (Relaxed)',
@@ -198,7 +205,7 @@ export const GARMENTS = [
     },
     brand: 'Sutra Gram',
     category: { en: 'Kurta', hi: 'कुर्ता' },
-    emoji: '👘',
+    image: khadiKurtaImage,
     colorHex: '#E9A820',
     accentHex: '#2B3A67',
     size: 'M (40)',
@@ -245,7 +252,7 @@ export const GARMENTS = [
     },
     brand: 'Kashi Weaves',
     category: { en: 'Saree', hi: 'साड़ी' },
-    emoji: '🥻',
+    image: silkSareeImage,
     colorHex: '#8C3B4A',
     accentHex: '#E9A820',
     size: '5.5m + 0.8m Blouse',

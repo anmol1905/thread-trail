@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Home, QrCode, MapPin, ShoppingBag, Route as RouteIcon } from 'lucide-react';
 import { Logo } from './Logo';
+import { JourneyProgress } from './JourneyProgress';
 import { useThreadTrail } from '../hooks/useThreadTrail';
 
 export function AppShell({ children }) {
@@ -22,17 +23,19 @@ export function AppShell({ children }) {
   ];
 
   return (
-    <div className="min-h-screen w-full flex justify-center bg-[#E7DEC9] sm:py-4">
+    <div className="textile-backdrop min-h-screen w-full flex justify-center bg-[#E7DEC9] sm:py-4">
       {/* Centered phone-width mobile-first container */}
-      <div className="w-full max-w-[430px] min-h-screen sm:min-h-[calc(100vh-2rem)] sm:rounded-[28px] sm:border sm:border-[#2B3A67]/15 sm:shadow-xl bg-[#FBF6EA] ajrakh-subtle-bg flex flex-col relative overflow-x-clip">
+      <div className="app-canvas w-full max-w-[1180px] min-h-screen lg:min-h-[calc(100vh-2rem)] lg:rounded-[28px] lg:border lg:border-[#2B3A67]/15 lg:shadow-xl bg-[#FBF6EA] ajrakh-subtle-bg flex flex-col relative overflow-x-clip">
         {/* Top Ajrakh hairline accent strip */}
         <div className="h-1.5 w-full ajrakh-border shrink-0 no-print" aria-hidden="true" />
 
         {/* Compact sticky mobile header (52px) */}
-        <header className="sticky top-0 z-30 h-[52px] px-4 bg-[#FBF6EA]/95 backdrop-blur-md border-b border-[#2B3A67]/12 flex items-center justify-between gap-4 no-print">
+        <header className="app-header sticky top-0 z-30 h-[52px] px-4 bg-[#FBF6EA]/95 backdrop-blur-md border-b border-[#2B3A67]/12 flex items-center justify-between gap-4 no-print">
           <Link to="/" aria-label="ThreadTrail Home" className="focus-visible:outline-2 focus-visible:outline-[#2B3A67] rounded-lg">
             <Logo compact />
           </Link>
+
+          <span className="demo-mode-badge hidden md:inline-flex">{t.common.demoMode}</span>
 
           <button
             type="button"
@@ -50,15 +53,12 @@ export function AppShell({ children }) {
           </button>
         </header>
 
-        {/* Main scrollable content */}
-        <main className="flex-1 px-4 pt-4 pb-24">
-          {children}
-        </main>
+        <div className="craft-ribbon sticky top-[52px] z-20 no-print" aria-hidden="true" />
 
-        {/* Fixed bottom 5-tab navigation bar (64px) */}
+        {/* Bottom tabs on mobile; sticky horizontal navigation on larger screens. */}
         <nav
           aria-label="Primary navigation"
-          className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 h-16 bg-[#FFFDF8]/95 backdrop-blur-md border-t border-[#2B3A67]/15 grid grid-cols-5 items-center px-1 no-print sm:rounded-b-[28px]"
+          className="woven-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 h-16 bg-[#FFFDF8]/95 backdrop-blur-md border-t border-[#2B3A67]/15 grid grid-cols-5 items-center px-1 no-print sm:rounded-b-[28px]"
         >
           {tabs.map((tab) => {
             const active = tab.match(pathname);
@@ -87,12 +87,12 @@ export function AppShell({ children }) {
                     </span>
                   )}
                 </div>
-                <span className="text-[11px] leading-none tracking-tight whitespace-nowrap">
+                <span className="nav-label text-[11px] leading-none tracking-tight whitespace-nowrap">
                   {tab.label}
                 </span>
                 {active && (
                   <span
-                    className="w-4 h-0.5 rounded-full bg-[#E9A820] mt-0.5"
+                    className="nav-active-mark w-4 h-0.5 rounded-full bg-[#E9A820] mt-0.5"
                     aria-hidden="true"
                   />
                 )}
@@ -100,6 +100,12 @@ export function AppShell({ children }) {
             );
           })}
         </nav>
+
+        {/* Main scrollable content */}
+        <main className="app-content flex-1 px-4 pt-4 pb-24">
+          <JourneyProgress />
+          {children}
+        </main>
       </div>
     </div>
   );

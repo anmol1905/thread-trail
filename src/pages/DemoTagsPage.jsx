@@ -13,7 +13,7 @@ export function DemoTagsPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="demo-tags-page space-y-4">
       <div className="flex items-center justify-between gap-2 no-print">
         <Link
           to="/scan"
@@ -38,7 +38,7 @@ export function DemoTagsPage() {
         <p className="text-sm text-[#2A2A2A]/75 mt-1">{t.demoTags.subtitle}</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 print-grid">
+      <div className="demo-tags-grid grid grid-cols-2 gap-3 print-grid">
         {GARMENTS.map((g) => {
           const url = getTagUrl(g.id);
           return (

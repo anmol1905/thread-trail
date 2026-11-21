@@ -101,7 +101,7 @@ export function ScanPage() {
   };
 
   return (
-    <div className="space-y-5">
+    <div className="scan-page space-y-5">
       <div>
         <h1 className="font-display text-2xl font-bold text-[#2B3A67]">{t.scan.title}</h1>
         <p className="text-sm text-[#2A2A2A]/75 mt-1">{t.scan.subtitle}</p>
@@ -196,7 +196,7 @@ export function ScanPage() {
               onClick={() => navigate(`/garment/${garment.id}`)}
               className="garment-tag-card p-3.5 text-left flex flex-col gap-2.5 hover:border-[#2B3A67]/45 active:scale-[0.98] transition-all"
             >
-              <GarmentIllustration garment={garment} size="sm" />
+              <GarmentIllustration garment={garment} size="md" />
               <div>
                 <div className="text-[11px] font-medium text-[#2A2A2A]/60 tabular-nums">
                   {garment.id} · {garment.brand}

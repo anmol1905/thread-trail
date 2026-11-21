@@ -86,7 +86,7 @@ export function TrackerPage() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="tracker-page space-y-4">
       <div className="flex items-center justify-between">
         <Link
           to="/track"
@@ -168,7 +168,7 @@ export function TrackerPage() {
 
       {/* Completion Thank-You & Impact Card */}
       {isCompleted && (
-        <section className="rounded-2xl bg-[#2B3A67] text-[#FBF6EA] overflow-hidden shadow-md">
+        <section className="indigo-textile-panel rounded-2xl bg-[#2B3A67] text-[#FBF6EA] overflow-hidden shadow-md">
           <div className="h-2 w-full ajrakh-border" aria-hidden="true" />
           <div className="p-5 space-y-3">
             <div className="flex items-center gap-2 text-[#E9A820] font-bold text-xs">
