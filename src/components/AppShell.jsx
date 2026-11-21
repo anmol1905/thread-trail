@@ -58,7 +58,7 @@ export function AppShell({ children }) {
         {/* Bottom tabs on mobile; sticky horizontal navigation on larger screens. */}
         <nav
           aria-label="Primary navigation"
-          className="woven-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-40 h-16 bg-[#FFFDF8]/95 backdrop-blur-md border-t border-[#2B3A67]/15 grid grid-cols-5 items-center px-1 no-print sm:rounded-b-[28px]"
+          className="woven-nav primary-nav no-print"
         >
           {tabs.map((tab) => {
             const active = tab.match(pathname);

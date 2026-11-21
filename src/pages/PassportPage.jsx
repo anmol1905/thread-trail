@@ -236,7 +236,7 @@ export function PassportPage() {
         >
           {/* CARE TAB */}
           {activeTab === 'care' && (
-            <div className="space-y-4">
+            <div className="passport-tab-content space-y-4">
               <div className="grid grid-cols-2 gap-2.5">
                 {[
                   {
@@ -294,7 +294,7 @@ export function PassportPage() {
 
           {/* ECO TAB */}
           {activeTab === 'eco' && (
-            <div className="space-y-4">
+            <div className="passport-tab-content space-y-4">
               <div className="flex items-center gap-4">
                 {/* Eco Score SVG Ring */}
                 <div className="relative w-24 h-24 shrink-0 flex items-center justify-center">
@@ -398,7 +398,7 @@ export function PassportPage() {
 
           {/* STORY TAB */}
           {activeTab === 'story' && (
-            <div className="space-y-4">
+            <div className="passport-tab-content space-y-4">
               <h2 className="font-display text-lg font-bold text-[#2B3A67]">
                 {t.passport.storyHeading}
               </h2>
@@ -430,7 +430,7 @@ export function PassportPage() {
 
           {/* NEXT LIFE TAB */}
           {activeTab === 'next' && (
-            <div className="space-y-4">
+            <div className="passport-tab-content space-y-4">
               <div>
                 <h2 className="font-display text-lg font-bold text-[#2B3A67]">
                   {t.passport.nextLifeHeading}
