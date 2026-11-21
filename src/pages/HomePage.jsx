@@ -129,14 +129,19 @@ export function HomePage() {
               {t.home.kgDiverted}
             </div>
           </div>
-          <div className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#E9A820]/40 p-3 text-center">
+          <Link
+            to="/rewards"
+            aria-label={`${state.points} ${t.home.pointsEarned}. ${t.rewards.viewRewards}`}
+            className="woven-card rounded-2xl bg-[#FFFDF8] border border-[#E9A820]/40 p-3 text-center block"
+          >
             <div className="text-2xl font-bold text-[#B3780A] tabular-nums">
               {state.points}
             </div>
             <div className="text-[11px] font-medium text-[#2A2A2A]/70 leading-tight mt-1">
               {t.home.pointsEarned}
             </div>
-          </div>
+            <div className="text-[10px] font-bold text-[#1F8A87] mt-1">{t.rewards.viewRewards} →</div>
+          </Link>
         </div>
       </section>
 

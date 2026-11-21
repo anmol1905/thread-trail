@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, QrCode, MapPin, ShoppingBag, Route as RouteIcon } from 'lucide-react';
+import { Gift, Home, QrCode, MapPin, ShoppingBag, Route as RouteIcon } from 'lucide-react';
 import { Logo } from './Logo';
 import { JourneyProgress } from './JourneyProgress';
 import { useThreadTrail } from '../hooks/useThreadTrail';
@@ -36,6 +36,21 @@ export function AppShell({ children }) {
           </Link>
 
           <span className="demo-mode-badge hidden md:inline-flex">{t.common.demoMode}</span>
+
+          <Link
+            to="/rewards"
+            aria-label={`${t.rewards.title}: ${state.points} ${t.common.pts}`}
+            aria-current={pathname.startsWith('/rewards') ? 'page' : undefined}
+            className={`rewards-header-link min-h-[38px] px-2.5 rounded-lg border text-xs font-bold inline-flex items-center gap-1.5 whitespace-nowrap ${
+              pathname.startsWith('/rewards')
+                ? 'bg-[#2B3A67] border-[#2B3A67] text-[#FBF6EA]'
+                : 'bg-[#FFFDF8] border-[#E9A820]/55 text-[#2B3A67]'
+            }`}
+          >
+            <Gift className="w-4 h-4 text-[#E9A820]" />
+            <span className="tabular-nums">{state.points}</span>
+            <span className="hidden lg:inline">{t.common.pts}</span>
+          </Link>
 
           <button
             type="button"

@@ -49,6 +49,12 @@
       "short_name": "Pickup bag",
       "url": "/#/bag",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Redeem Green Points",
+      "short_name": "Rewards",
+      "url": "/#/rewards",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

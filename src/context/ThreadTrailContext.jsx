@@ -22,6 +22,7 @@ function createInitialState() {
     selectedPartnerId: null,
     userLocation: DEFAULT_LOCATION,
     points: 20,
+    redeemedRewards: [],
     pickups: [
       {
         id: 'TT-18420',
@@ -58,6 +59,7 @@ function loadStateFromStorage() {
       ...parsed,
       bagItems: Array.isArray(parsed.bagItems) ? parsed.bagItems : [],
       pickups: Array.isArray(parsed.pickups) ? parsed.pickups : [],
+      redeemedRewards: Array.isArray(parsed.redeemedRewards) ? parsed.redeemedRewards : [],
       userLocation: parsed.userLocation || DEFAULT_LOCATION,
     };
   } catch {
@@ -185,6 +187,24 @@ export function ThreadTrailProvider({ children }) {
     return trackingId;
   }, [state.bagItems, state.selectedPartnerId]);
 
+  const redeemReward = useCallback((rewardId, cost, code) => {
+    setState((prev) => {
+      const alreadyRedeemed = (prev.redeemedRewards || []).some(
+        (item) => item.rewardId === rewardId
+      );
+      if (alreadyRedeemed || (prev.points || 0) < cost) return prev;
+
+      return {
+        ...prev,
+        points: prev.points - cost,
+        redeemedRewards: [
+          ...(prev.redeemedRewards || []),
+          { rewardId, code, pointsSpent: cost, redeemedAt: Date.now() },
+        ],
+      };
+    });
+  }, []);
+
   const resetDemoData = useCallback(() => {
     const fresh = createInitialState();
     setState(fresh);
@@ -217,6 +237,7 @@ export function ThreadTrailProvider({ children }) {
         selectPartner,
         setUserLocation,
         confirmPickup,
+        redeemReward,
         resetDemoData,
       }}
     >

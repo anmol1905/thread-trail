@@ -14,7 +14,7 @@ export function JourneyProgress() {
   const { pathname } = useLocation();
   const { t } = useThreadTrail();
 
-  if (pathname === '/' || pathname.startsWith('/demo-tags')) return null;
+  if (pathname === '/' || pathname.startsWith('/demo-tags') || pathname.startsWith('/rewards')) return null;
 
   const currentStep = getCurrentStep(pathname);
   const completedThrough = currentStep - 1;

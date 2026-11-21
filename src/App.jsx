@@ -10,6 +10,7 @@ import { PartnersPage } from './pages/PartnersPage';
 import { BagPage } from './pages/BagPage';
 import { TrackListPage } from './pages/TrackListPage';
 import { TrackerPage } from './pages/TrackerPage';
+import { RewardsPage } from './pages/RewardsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="/bag" element={<BagPage />} />
             <Route path="/track" element={<TrackListPage />} />
             <Route path="/track/:id" element={<TrackerPage />} />
+            <Route path="/rewards" element={<RewardsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AppShell>
