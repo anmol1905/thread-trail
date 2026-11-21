@@ -213,7 +213,7 @@
 .woven-card {
   background-image:
     linear-gradient(rgba(255, 253, 248, 0.92), rgba(255, 253, 248, 0.92)),
-    url('./assets/images/textures/ikat.webp'),
+    url('./assets/images/textures/block.jpg'),
     linear-gradient(45deg, rgba(43, 58, 103, 0.025) 25%, transparent 25%, transparent 75%, rgba(43, 58, 103, 0.025) 75%),
     linear-gradient(45deg, rgba(233, 168, 32, 0.025) 25%, transparent 25%, transparent 75%, rgba(233, 168, 32, 0.025) 75%);
   background-position: 0 0, center, 0 0, 4px 4px;
@@ -510,7 +510,7 @@
 .app-content [class~="bg-[#EFE6D2]"] {
   background-image:
     linear-gradient(rgba(251, 246, 234, 0.93), rgba(251, 246, 234, 0.93)),
-    url('./assets/images/textures/ikat.webp');
+    url('./assets/images/textures/block.jpg');
   background-size: auto, 300px auto;
   background-blend-mode: normal, luminosity;
 }
