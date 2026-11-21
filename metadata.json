@@ -1,0 +1,6 @@
+{
+  "name": "ThreadTrail",
+  "description": "Digital garment passport, care tag QR scanner, and community textile pickup tracker for circular fashion.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}
